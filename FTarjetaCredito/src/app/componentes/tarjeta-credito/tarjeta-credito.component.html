@@ -13,12 +13,91 @@
       <div class="col">
         <div class="card mt-5">
             <h5>Agregar tarjeta</h5>
+
+            <form [formGroup]="form" (ngSubmit)="agregarTarjeta()">
+              <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text" >
+                   @
+                  <i class="fas fa-edit"></i>
+                </span>
+                <input  formControlName="titular"  type="text" class="form-control" placeholder="Titular" >
+              </div>
+
+              <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text" >
+                   @
+                  <i class="fas fa-edit"></i>
+                </span>
+                <input formControlName="numeroTarjeta"  type="text" class="form-control" placeholder="Numero Tarjeta" >
+              </div>
+
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="input-group input-group-lg mb-3">
+                      <span class="input-group-text" >
+                         @
+                        <i class="fas fa-edit"></i>
+                      </span>
+                      <input formControlName="fechaExpiracion" type="text" class="form-control" placeholder="MM/YY" >
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6">
+                    <div class="input-group input-group-lg mb-3">
+                      <span class="input-group-text" >
+                         @
+                        <i class="fas fa-edit"></i>
+                      </span>
+                      <input formControlName="cvv" type="password" class="form-control" placeholder="CVV" >
+                    </div>
+                  </div>
+
+
+                </div>
+                  <div class="d-grid gap-2">
+                      <button type="submit" class="btn  btn-success btn-lg">
+                        <i class="bi bi-database"></i> 
+                        Aceptar
+                      </button>
+                  </div>
+            </form>
+
         </div>
         
       </div>
       <div class="col">
             <div class="card mt-5">
             <h5>Listado tarjeta</h5>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Titular</th>
+                  <th scope="col">Numero expiracion</th>
+                  <th scope="col">Fecha expiracion</th>
+                  <th scope="col">Operacion</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let tarjeta of listTarjetas">
+                  <td>{{tarjeta.titular}}</td>
+                  <td>{{tarjeta.numeroTarjeta}}</td>
+                  <td>{{tarjeta.fechaExpiracion}}</td>
+                  <td>
+                    <a href="#" class="btn btn-sm btn-info "><i class="fas fa-edit"></i> Editar</a>
+                    <span>&nbsp;</span> <!-- Espacio entre los botones -->
+                    <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</a>
+                  </td>
+                  <td>
+                   
+                   
+                  </td>
+                </tr>
+                
+                 
+              </tbody>
+            </table>
+
           </div>
       </div>
       
