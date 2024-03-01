@@ -20,7 +20,8 @@
                    @
                   <i class="fas fa-edit"></i>
                 </span>
-                <input  formControlName="titular"  type="text" class="form-control" placeholder="Titular" >
+                <input [ngClass]="{'has-error': this.form.get('titular')?.invalid}"  formControlName="titular"  type="text" class="form-control" placeholder="Titular" >
+                
               </div>
 
               <div class="input-group input-group-lg mb-3">
@@ -28,7 +29,7 @@
                    @
                   <i class="fas fa-edit"></i>
                 </span>
-                <input formControlName="numeroTarjeta"  type="text" class="form-control" placeholder="Numero Tarjeta" >
+                <input [ngClass]="{'has-error': this.form.get('numeroTarjeta')?.invalid}" formControlName="numeroTarjeta"  type="text" class="form-control" placeholder="Numero Tarjeta" >
               </div>
 
                 <div class="row">
@@ -38,7 +39,7 @@
                          @
                         <i class="fas fa-edit"></i>
                       </span>
-                      <input formControlName="fechaExpiracion" type="text" class="form-control" placeholder="MM/YY" >
+                      <input [ngClass]="{'has-error': this.form.get('fechaExpiracion')?.invalid}" formControlName="fechaExpiracion" type="text" class="form-control" placeholder="MM/YY" >
                     </div>
                   </div>
 
@@ -48,14 +49,14 @@
                          @
                         <i class="fas fa-edit"></i>
                       </span>
-                      <input formControlName="cvv" type="password" class="form-control" placeholder="CVV" >
+                      <input [ngClass]="{'has-error': this.form.get('cvv')?.invalid}" formControlName="cvv" type="password" class="form-control" placeholder="CVV" >
                     </div>
                   </div>
 
 
                 </div>
                   <div class="d-grid gap-2">
-                      <button type="submit" class="btn  btn-success btn-lg">
+                      <button  [disabled]="this.form.invalid" type="submit" class="btn  btn-success btn-lg">
                         <i class="bi bi-database"></i> 
                         Aceptar
                       </button>
@@ -79,14 +80,14 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let tarjeta of listTarjetas">
+                <tr *ngFor="let tarjeta of listTarjetas; let i=index">
                   <td>{{tarjeta.titular}}</td>
                   <td>{{tarjeta.numeroTarjeta}}</td>
                   <td>{{tarjeta.fechaExpiracion}}</td>
                   <td>
                     <a href="#" class="btn btn-sm btn-info "><i class="fas fa-edit"></i> Editar</a>
                     <span>&nbsp;</span> <!-- Espacio entre los botones -->
-                    <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</a>
+                    <a  href="#" (click)="eliminarTarjeta(i)" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</a>
                   </td>
                   <td>
                    
@@ -104,3 +105,4 @@
        
     </div>
 </div>
+
